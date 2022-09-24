@@ -1,10 +1,13 @@
 # CPP EventMap webapp
 ````
-Developers: Brandon Moya, Aamir Sajjad, Vu Nguyen, Brandon Tier, John Salinas
+Developers: Brandon Moya, Aamir Sajjad, Vu Nguyen, Brandon Tiet, John Salinas
 ````
 
 ````
-Description: A webapp focused around an interactive map of the CPP campus from where to display events as markers.
+Description: A webapp focused around an interactive map of the CPP campus. Users are able
+             to post social events, including club events/meetings, and official school events,
+             to then be displayed on the map.
+            
 Technologies
     => TypeScript
     Frontend:
@@ -16,7 +19,6 @@ Technologies
         => MongoDB
     Planned:
         => Host on AWS
-
 ````
 
 
