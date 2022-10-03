@@ -1,14 +1,10 @@
 import React, { useRef, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
-//import dotenv from 'dotenv'
-import mapboxgl, { FullscreenControl } from 'mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
+import mapboxgl from 'mapbox-gl'; 
 import Map from 'react-map-gl';
-import { JsxEmit } from 'typescript';
 import '../styles/map.css'
 
-//dotenv.config();
- 
-mapboxgl.accessToken = '';
+mapboxgl.accessToken =  `${process.env.REACT_APP_MAPBOXTOKEN}`
 
 type CPPMapProps = {
     longitude: Number,
@@ -16,7 +12,7 @@ type CPPMapProps = {
     zoom: Number
 }
 
-// CPP Longitude and latitude
+// CPP Longitude and Latitude
 //34.05775617645074, -117.82261244351792
 
 export const CPPMap = (): JSX.Element =>  {
@@ -48,7 +44,7 @@ export const CPPMap = (): JSX.Element =>  {
                     zoom: zoomVal,
                     pitch: 50
                 }}
-                style={{width: mapWidth, height: mapHeight}}
+                style={{width: "100vw", height: "100vh"}}
                 mapStyle="mapbox://styles/mapbox/streets-v9"
                 //onRender={(event) => event.target.resize()}
                 onResize={(event) => event.target.resize()}
