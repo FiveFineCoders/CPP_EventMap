@@ -15,9 +15,6 @@ app.get("/api/assignment3/vunguyen", (req: Request, res: Response) => {
   res.send("Hello Worlddddddddddddddddddd");
 });
 
-app.get("/", (req: Request, res: Response) => {
-  res.send("Server is running!");
-});
 app.get("/api/assignment3/brandonmoya", (req: Request, res: Response) => {
   res.send("HTTP API for Brandon Moya -> Trabajando! Whats up guys.");
 });
