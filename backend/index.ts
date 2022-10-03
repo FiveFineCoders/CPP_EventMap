@@ -5,7 +5,16 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const app: Express = express();
-const port = process.env.PORT
+const port = 8080
+//process.env.PORT
+
+app.get('/api/assignment3/johnsalinas', (req: Request, res: Response) => {
+    res.send("HTTP API for John Salinas -> working")
+})
+
+  
+
+
 
 app.get('/', (req : Request ,res: Response) => {
     res.send('Server is running!');
