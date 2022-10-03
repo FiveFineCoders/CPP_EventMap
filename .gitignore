@@ -10,10 +10,12 @@
 /coverage
 
 # production
-/build
+*build
 
 # misc
+*.env
 /backend/.env
+/frontend/.env
 .DS_Store
 .env.local
 .env.development.local
