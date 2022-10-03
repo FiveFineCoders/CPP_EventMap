@@ -23,6 +23,10 @@ app.get('/api/assignment3/brandontiet', (req, res) => {
     res.send("HTTP API for Brandon Tiet -> Hello there :)")
 });
 
+app.get('/api/assignment3/aamirsajjad', (req, res) => {
+    res.send("HTTP API for Aamir Sajjad -> Got it to work")
+});
+
 app.get("/", (req: Request, res: Response) => {
   res.send("Server is running!");
 });
