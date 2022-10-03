@@ -1,5 +1,6 @@
 import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
+import lodash from "lodash";
 
 dotenv.config();
 
@@ -21,6 +22,11 @@ app.get("/api/assignment3/brandonmoya", (req: Request, res: Response) => {
 
 app.get('/api/assignment3/brandontiet', (req, res) => {
     res.send("HTTP API for Brandon Tiet -> Hello there :)")
+});
+
+const testNums = lodash.range(1,10);
+app.get('/api/assignment4/johnsalinas', (req: Request, res: Response) => {
+    res.send(`${testNums}`)
 });
 
 app.get("/", (req: Request, res: Response) => {
