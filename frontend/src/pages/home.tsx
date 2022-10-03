@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import mapboxgl from 'mapbox-gl'; 
 import Map from 'react-map-gl';
+import DateTime from '../dateTime';
 import '../styles/map.css'
 
 mapboxgl.accessToken =  `${process.env.REACT_APP_MAPBOXTOKEN}`
@@ -45,6 +46,7 @@ return (
         //onRender={(event) => event.target.resize()}
         onResize={(event) => event.target.resize()}
       />
+      <DateTime></DateTime>
     </div>
 
     )
