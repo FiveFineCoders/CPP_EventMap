@@ -7,7 +7,14 @@ const express_1 = __importDefault(require("express"));
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
-const port = process.env.PORT;
+const port = 8080;
+//process.env.PORT
+app.get('/api/assignment3/johnsalinas', (req, res) => {
+    res.send("HTTP API for John Salinas -> working");
+});
+app.get('/api/assignment3/brandonmoya', (req, res) => {
+    res.send("HTTP API for Brandon Moya -> Trabajando! Whats up guys.");
+});
 app.get('/', (req, res) => {
     res.send('Server is running!');
 });
