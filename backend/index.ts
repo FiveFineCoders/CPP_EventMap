@@ -1,6 +1,7 @@
 import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
 import lodash from "lodash";
+import * as ramda from "ramda";
 
 dotenv.config();
 
@@ -32,6 +33,12 @@ app.get('/api/assignment3/aamirsajjad', (req, res) => {
 const testNums = lodash.range(1,10);
 app.get('/api/assignment4/johnsalinas', (req: Request, res: Response) => {
     res.send(`${testNums}`)
+});
+
+const triple = (x: number) => x * 3;
+const ramdaTest = ramda.map(triple, [ 2, 4, 6]);
+app.get('/api/assignment4/brandonmoya', (req: Request, res: Response) => {
+    res.send("Moya used the Ramda NPM Package, we have a constant triple where (x:number) => x * 3, our data set is [2, 4, 6], so using ramda.map(triple, [2, 4, 6]) we get... " + `${ramdaTest}`)
 });
 
 app.get("/", (req: Request, res: Response) => {
