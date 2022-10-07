@@ -1,5 +1,5 @@
 import {Routes, Route, Link } from "react-router-dom"
-import { CPPMap } from "./pages/home"
+import { Home } from "./pages/Home"
 
 
 export function App() {
@@ -9,7 +9,7 @@ export function App() {
         <div id="root-div">
 
             <Routes>
-                <Route path="/" element={<CPPMap/>}></Route>
+                <Route path="/" element={<Home/>}></Route>
             </Routes>
 
         </div>
