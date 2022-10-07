@@ -2,7 +2,8 @@ import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
 import lodash from "lodash";
 import * as ramda from "ramda";
-import colors from "colors";
+import underscore from "underscore";
+import { request } from "http";
 
 dotenv.config();
 
@@ -42,11 +43,11 @@ app.get('/api/assignment4/brandonmoya', (req: Request, res: Response) => {
     res.send("Moya used the Ramda NPM Package, we have a constant triple where (x:number) => x * 3, our data set is [2, 4, 6], so using ramda.map(triple, [2, 4, 6]) we get... " + `${ramdaTest}`)
 });
 
-const colors = require('colors');
+const list = [[9,5,7], [8,4,9]];
 app.get('/api/assignment4/aamirsajjad', (req: Request, res: Response) => {
-    res.send("Aamir used the colors package".blue)
-    res.send("Colors can vary".underline.red)
-});
+    res.send(underscore.invoke(list,'sort'));
+})
+
 app.get("/", (req: Request, res: Response) => {
   res.send("Server is running!");
 });
