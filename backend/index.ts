@@ -1,5 +1,6 @@
 import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
+import dayjs from "dayjs";
 
 dotenv.config();
 
@@ -19,9 +20,15 @@ app.get("/api/assignment3/brandonmoya", (req: Request, res: Response) => {
   res.send("HTTP API for Brandon Moya -> Trabajando! Whats up guys.");
 });
 
-app.get('/api/assignment3/brandontiet', (req, res) => {
-    res.send("HTTP API for Brandon Tiet -> Hello there :)")
+app.get('/api/assignment3/brandontiet', (req: Request, res: Response) => {
+  res.send("HTTP API for Brandon Tiet -> Hello there :)")
 });
+
+const currentDay = dayjs(new Date()).format("hh:mm:ss a")
+app.get('/api/assignment4/brandontiet', (req: Request, res: Response) => {
+  res.send(currentDay);
+});
+
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Server is running!");
