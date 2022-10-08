@@ -5,6 +5,7 @@ import * as ramda from "ramda";
 import { Mongoose, Schema } from "mongoose";
 import Event from "./models/event.model";
 import CPPEvent from "./schema/CPPEvent";
+import colors from "colors";
 
 dotenv.config();
 
@@ -70,6 +71,11 @@ app.get("/api/assignment4/brandonmoya", (req: Request, res: Response) => {
   );
 });
 
+const colors = require('colors');
+app.get('/api/assignment4/aamirsajjad', (req: Request, res: Response) => {
+    res.send("Aamir used the colors package".blue)
+    res.send("Colors can vary".underline.red)
+});
 app.get("/", (req: Request, res: Response) => {
   res.send("Server is running!");
 });
