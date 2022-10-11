@@ -1,3 +1,5 @@
+import '../styles/datetime.css'
+
 import {useState, useEffect} from 'react'
 
 export const DateTime = () => {
@@ -11,7 +13,7 @@ export const DateTime = () => {
     });
 
     return(
-        <div>
+        <div className = "outer-datetime">
             <p> Time: {date.toLocaleTimeString()}, Date: {date.toLocaleDateString()}</p>
         </div>
     )
