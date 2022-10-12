@@ -1,4 +1,6 @@
-import React, {useState, useEffect} from 'react'
+import '../styles/datetime.css'
+
+import {useState, useEffect} from 'react'
 
 export const DateTime = () => {
     var [date, setDate] = useState(new Date());
@@ -11,10 +13,9 @@ export const DateTime = () => {
     });
 
     return(
-        <div>
+        <div className = "outer-datetime">
             <p> Time: {date.toLocaleTimeString()}, Date: {date.toLocaleDateString()}</p>
         </div>
     )
 }
-export{}
-export default DateTime
+
