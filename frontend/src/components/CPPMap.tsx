@@ -59,7 +59,7 @@ export const CPPMap = (): JSX.Element => {
     <div className='outer-cppmap'>
       <ReactMapGL
         {...viewState}
-        style={{height: "calc(100vh - 66.5px)"}}
+        style={{height: "calc(100vh - 68.5px)"}}
         onMove={evt => setViewState(evt.viewState)}
         mapStyle="mapbox://styles/mapbox/streets-v9"
         
