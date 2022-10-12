@@ -3,6 +3,7 @@ import { Home } from "./pages/Home"
 import { Navigation } from './components/Navigation'
 import { Login } from './pages/Login'
 //import { EventList } from './components/EventList'
+import './styles/general.css'
 
 
 export function App() {
