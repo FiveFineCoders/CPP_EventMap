@@ -43,7 +43,7 @@ export const Login = (): JSX.Element => {
 
                 <div className = "mb-4 d-grid gap-2">
                     <Button variant="secondary" size="sm" >
-                        Login
+                        {loginMode ? "Login" : "Sign Up"}
                     </Button>
                 </div>
 
