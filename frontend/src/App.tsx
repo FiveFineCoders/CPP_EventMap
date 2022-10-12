@@ -1,6 +1,8 @@
 import {Routes, Route, Link } from "react-router-dom"
 import { Home } from "./pages/Home"
 import { Navigation } from './components/Navigation'
+import { Login } from './pages/Login'
+//import { EventList } from './components/EventList'
 
 
 export function App() {
@@ -11,7 +13,7 @@ export function App() {
             <Navigation />
             <Routes>
                 <Route path="/" element={<Home/>}></Route>
-                
+                <Route path="login" element={<Login/>}></Route>
             </Routes>
 
         </div>
