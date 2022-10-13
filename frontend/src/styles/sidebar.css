@@ -1,0 +1,22 @@
+.sidebarIcon {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  top: 20px;
+  left: 20px;
+}
+
+.sidebar {
+  background-color: rgba(63, 114, 117, 0.3);
+  box-shadow: 0.5px 0.866px 2px 0px rgba(0, 0, 0, 0.15);
+}
+
+.sub-menu-content {
+  background-color: transparent !important;
+  font-size: 20px;
+}
+
+.sub-menu {
+  font-size: 25px;
+  font-weight: bold;
+}
