@@ -1,5 +1,5 @@
 import { Routes, Route, Link } from "react-router-dom";
-import { Home } from "./pages/home";
+import { Home } from "./pages/Home";
 import { Navigation } from "./components/Navigation";
 import { Login } from "./pages/Login";
 //import { EventList } from './components/EventList'
