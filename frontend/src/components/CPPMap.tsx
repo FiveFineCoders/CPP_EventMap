@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import mapboxgl from "mapbox-gl";
-import ReactMapGL from "react-map-gl";
+import ReactMapGL, { FullscreenControl,GeolocateControl, NavigationControl, ScaleControl} from "react-map-gl";
 import MapSidebar from "./MapSidebar";
 
 mapboxgl.accessToken = `${process.env.REACT_APP_MAPBOXTOKEN}`;
@@ -60,10 +60,14 @@ export const CPPMap = (): JSX.Element => {
         {...viewState}
         style={{ height: "calc(100vh - 68.5px)" }}
         onMove={(evt) => setViewState(evt.viewState)}
-        mapStyle="mapbox://styles/mapbox/streets-v9"
+        mapStyle="mapbox://styles/johnsalinas123/cl86tm6hc001616o8mjxmygk7"
         z-index={-1}
       >
         <MapSidebar />
+        <GeolocateControl position="top-right" />
+        <FullscreenControl position="top-right"/>
+        <NavigationControl position="top-right" />
+        <ScaleControl />
       </ReactMapGL>
     </div>
   );
