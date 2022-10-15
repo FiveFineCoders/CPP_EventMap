@@ -5,13 +5,11 @@ import * as ramda from 'ramda';
 import { Mongoose, Schema } from 'mongoose';
 import Event from './models/event.model';
 import CPPEvent from './schema/CPPEvent';
-import colors from 'colors';
 
 dotenv.config();
 
 const app: Express = express();
 const port = 8080;
-//process.env.PORT
 
 const mongoose: Mongoose = require('mongoose');
 mongoose.connect(`${process.env.MONGO_DB_CLUSTER}`, (err) => {
