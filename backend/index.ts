@@ -1,5 +1,8 @@
 import express, { Express, Request, Response } from 'express';
+import { dbConnect } from './dbConnect';
 import dotenv from 'dotenv';
+import eventRouter from './routes/eventRoutes';
+
 import lodash from 'lodash';
 import * as ramda from 'ramda';
 import { Mongoose, Schema } from 'mongoose';
@@ -8,9 +11,11 @@ import CPPEvent from './schema/CPPEvent';
 
 dotenv.config();
 
+dbConnect();
 const app: Express = express();
 const port = 8080;
 
+/*
 const mongoose: Mongoose = require('mongoose');
 mongoose.connect(`${process.env.MONGO_DB_CLUSTER}`, (err) => {
 	if (err) {
@@ -18,6 +23,16 @@ mongoose.connect(`${process.env.MONGO_DB_CLUSTER}`, (err) => {
 	}
 	console.log('Connected to database');
 });
+*/
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
+//
+
+app.use('/api/events', eventRouter);
+
+// assignments
 
 app.get('/event', (req: Request, res: Response) => {
 	const input = {
