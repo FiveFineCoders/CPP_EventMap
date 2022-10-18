@@ -42,8 +42,6 @@ describe('Get Event Control', () => {
 			username: 'Red',
 		});
 
-		data.save();
-
 		// Act
 		const res = await req.get('/api/events/');
 
