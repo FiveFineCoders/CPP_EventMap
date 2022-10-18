@@ -1,13 +1,11 @@
 import express, { Express, Request, Response } from 'express';
-import { dbConnect } from './dbConnect';
 import dotenv from 'dotenv';
-import eventRouter from './routes/eventRoutes';
-
 import lodash from 'lodash';
 import * as ramda from 'ramda';
-import { Mongoose, Schema } from 'mongoose';
 import Event from './models/event.model';
 import CPPEvent from './schema/CPPEvent';
+import { dbConnect } from './dbConnect';
+import eventRouter from './routes/eventRoutes';
 
 dotenv.config();
 
