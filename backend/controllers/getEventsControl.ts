@@ -7,7 +7,7 @@ export const getEvents = async (req: Request, res: Response) => {
 	if (!allEvents.length) {
 		res.status(400).json();
 	} else {
-		console.log('Got events!', allEvents);
+		console.log('Got events!');
 		res.status(200).json(allEvents);
 	}
 };

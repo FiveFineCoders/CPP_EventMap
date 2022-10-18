@@ -50,5 +50,12 @@ describe('Get Event Control', () => {
 		// Assert
 		expect(res.status).toBe(200);
 		expect(res.body).toHaveLength(1);
+		expect(res.body[0].name).toBe('Christmas');
+		expect(res.body[0].startTime).toBe('2022-12-23T12:00:00.000Z');
+		expect(res.body[0].endTime).toBe('2022-12-23T14:00:00.000Z');
+		expect(res.body[0].room).toBe('345');
+		expect(res.body[0].building).toBe('8');
+		expect(res.body[0].description).toBe('Bla blah');
+		expect(res.body[0].username).toBe('Red');
 	});
 });
