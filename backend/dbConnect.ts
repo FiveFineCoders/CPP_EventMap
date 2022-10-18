@@ -1,10 +1,5 @@
 import mongoose from 'mongoose';
 
-const options = {
-	useNewUrlParser: true,
-	useUnifiedTopology: true,
-};
-
 const { MongoMemoryServer } = require('mongodb-memory-server');
 let mongod: typeof MongoMemoryServer = null;
 let dbUrl;
