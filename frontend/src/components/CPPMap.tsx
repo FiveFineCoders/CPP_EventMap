@@ -7,6 +7,7 @@ import ReactMapGL, {
 	ScaleControl,
 } from 'react-map-gl';
 import MapSidebar from './MapSidebar';
+import { AiFillPlusCircle } from 'react-icons/ai'; 
 
 mapboxgl.accessToken = `${process.env.REACT_APP_MAPBOXTOKEN}`;
 
@@ -56,6 +57,10 @@ export const CPPMap = (): JSX.Element => {
 		console.log(mapWidth);
 	};
 
+	function createEvent() {
+		console.log("hello there")
+	}
+
 	//34.027805, -117.845633
 	//34.064494, -117.779088
 	return (
@@ -76,6 +81,16 @@ export const CPPMap = (): JSX.Element => {
 				<FullscreenControl position='top-right' />
 				<NavigationControl position='top-right' />
 				<ScaleControl />
+
+				<div id="addEventIcon">
+          			<AiFillPlusCircle 
+              			size="70"
+              			onClick={event => {
+                			createEvent()
+              			}}
+            		/>
+        		</div>
+
 			</ReactMapGL>
 		</div>
 	);
