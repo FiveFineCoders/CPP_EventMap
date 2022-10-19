@@ -32,6 +32,11 @@ export const createEvent = async (req: Request, res: Response) => {
 		res.status(406).json({ message: 'Error: Empty fields!' });
 	}
 
+	// check for length of name
+	if (name.length > 30) {
+		res.status(406).json({ message: 'Error: Name too long!' });
+	}
+
 	// plan: check if duplicate event?
 
 	// attempt to create new event
