@@ -6,6 +6,7 @@ import Event from './models/event.model';
 import CPPEvent from './schema/CPPEvent';
 import { dbConnect } from './dbConnect';
 import eventRouter from './routes/eventRoutes';
+import underscore from 'underscore';
 
 dotenv.config();
 
@@ -60,11 +61,11 @@ app.get('/api/assignment3/brandonmoya', (req: Request, res: Response) => {
 	res.send('HTTP API for Brandon Moya -> Trabajando! Whats up guys.');
 });
 
-app.get('/api/assignment3/brandontiet', (req, res) => {
+app.get('/api/assignment3/brandontiet', (req: Request, res: Response) => {
 	res.send('HTTP API for Brandon Tiet -> Hello there :)');
 });
 
-app.get('/api/assignment3/aamirsajjad', (req, res) => {
+app.get('/api/assignment3/aamirsajjad', (req: Request, res: Response) => {
 	res.send('HTTP API for Aamir Sajjad -> Got it to work');
 });
 
