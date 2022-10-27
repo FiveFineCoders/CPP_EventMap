@@ -4,16 +4,19 @@ phases:
   install:
     runtime-versions:
       nodejs: 16
+      
+    commands:
+      -'npm install'
   pre_build:
     commands:
       #installs dependencies into the node_modules/ directory
-      - npm install -g typescript
-      - npm install
+      - 'npm install -g typescript'
+      - 'npm install'
   build:
     commands:
       - echo Build started on `date`
       - echo Compiling
-      - npm run build
+      - 'npm run build'
   post_build:
     commands:
       - echo Build completed on `date`
