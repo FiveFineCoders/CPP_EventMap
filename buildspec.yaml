@@ -6,12 +6,12 @@ phases:
       nodejs: 16
       
     commands:
-      -'npm install'
+      - npm install -g typescript
+      - npm install
   pre_build:
-    commands:
+    
       #installs dependencies into the node_modules/ directory
-      - 'npm install -g typescript'
-      - 'npm install'
+      
   build:
     commands:
       - echo Build started on `date`
