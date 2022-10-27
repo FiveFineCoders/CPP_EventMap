@@ -1,26 +1,19 @@
-# Do not change version. This is the version of aws buildspec, not the version of your buldspec file.
 version: 0.2
+
 phases:
   install:
     runtime-versions:
-      nodejs: 16
-      
+      nodejs: latest
     commands:
       - npm install -g typescript
       - npm install
-  pre_build:
-    
-      #installs dependencies into the node_modules/ directory
-      
   build:
     commands:
-      - echo Build started on `date`
-      - echo Compiling
-      - 'npm run build'
-  post_build:
-    commands:
-      - echo Build completed on `date`
-# Include only the files required for your application to run.
+      - tsc
+
 artifacts:
   files:
-    - '**/*'
+    - package.json
+    - package-lock.json
+    - 'build/**/*'
+  discard-paths: yes
