@@ -13,6 +13,21 @@ const FilterForm = () => {
 				<Form.Control type='datetime-local' />
 			</Form.Group>
 
+			<Form.Group className='mb-3' controlId='filterRoom'>
+				<Form.Label> Room </Form.Label>
+				<Form.Control placeholder='Ex: 345' />
+			</Form.Group>
+
+			<Form.Group className='mb-3' controlId='filterBuilding'>
+				<Form.Label> Building </Form.Label>
+				<Form.Control placeholder='Ex: 8' />
+			</Form.Group>
+
+			<Form.Group className='mb-3' controlId='filterEventType'>
+				<Form.Label> Event Type </Form.Label>
+				<Form.Control placeholder='Ex: Workshop' />
+			</Form.Group>
+
 			<Button variant='primary' type='submit'>
 				Submit
 			</Button>

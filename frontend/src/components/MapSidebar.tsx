@@ -22,12 +22,6 @@ const MapSidebar = () => {
 							<FilterForm />
 						</Container>
 					</SubMenu>
-
-					<SubMenu label='Create Event' icon={<AiFillPlusCircle size='30' />}>
-						<Container id='main-container' className='d-grid h-100'>
-							<EventForm />
-						</Container>
-					</SubMenu>
 				</Menu>
 			</Sidebar>
 			<main>
