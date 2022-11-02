@@ -28,6 +28,25 @@ export const Login = (): JSX.Element => {
 		setLoginMode(loginMode ? false : true);
 	};
 
+	// handle change in user input
+	const handleUserInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		const eventID = event.target.id;
+
+		switch (eventID) {
+			case 'usernameInput':
+				setUserName(event.target.value);
+				break;
+			case 'passwordInput':
+				setPassword(event.target.value);
+				break;
+			case 'confirmInput':
+				setConfirm(event.target.value);
+				break;
+			default:
+				console.log('Unexpected error in input updating!');
+		}
+	};
+
 	// login user
 	const loginUser = async () => {
 		try {
@@ -106,14 +125,18 @@ export const Login = (): JSX.Element => {
 				</div>
 
 				<Form.Group className='mb-4' controlId='usernameInput'>
-					<Form.Control placeholder='Username' />
+					<Form.Control placeholder='Username' onChange={handleUserInputChange} />
 				</Form.Group>
 				<FormGroup className='mb-4' controlId='passwordInput'>
-					<FormControl type='password' placeholder='Password' />
+					<FormControl type='password' placeholder='Password' onChange={handleUserInputChange} />
 				</FormGroup>
 				{!loginMode && (
 					<Form.Group className='mb-3' controlId='confirmInput'>
-						<FormControl type='password' placeholder='Confirm Password' />
+						<FormControl
+							type='password'
+							placeholder='Confirm Password'
+							onChange={handleUserInputChange}
+						/>
 					</Form.Group>
 				)}
 
