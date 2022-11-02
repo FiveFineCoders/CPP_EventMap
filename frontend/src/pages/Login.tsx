@@ -14,7 +14,7 @@ export const Login = (): JSX.Element => {
 	// user credentials
 	const [username, setUserName] = useState('');
 	const [password, setPassword] = useState('');
-	const [Confirm, setConfirm] = useState('');
+	const [confirm, setConfirm] = useState('');
 
 	// alert message
 	const [alert, setAlert] = useState('');
@@ -22,6 +22,11 @@ export const Login = (): JSX.Element => {
 	// utils
 	const navigate = useNavigate();
 	const [loginMode, setLoginMode] = useState(true);
+
+	// toggle between login/signup
+	const toggleMode = (): void => {
+		setLoginMode(loginMode ? false : true);
+	};
 
 	// login user
 	const loginUser = async () => {
@@ -75,8 +80,22 @@ export const Login = (): JSX.Element => {
 		}
 	};
 
-	const toggleMode = (): void => {
-		setLoginMode(loginMode ? false : true);
+	// handle login or signup
+	const handleLogin = () => {
+		// check for empty fields
+		if (username.length == 0 || password.length == 0 || (confirm.length == 0 && !loginMode)) {
+			setAlert('All fields required.');
+			return;
+		} else if (password != confirm && !loginMode) {
+			setAlert("Passwords don't match");
+			return;
+		}
+
+		if (loginMode) {
+			loginUser();
+		} else {
+			signUpUser();
+		}
 	};
 
 	return (
