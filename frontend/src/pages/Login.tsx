@@ -124,6 +124,10 @@ export const Login = (): JSX.Element => {
 					<p>{loginMode ? 'Login' : 'Sign up'}</p>
 				</div>
 
+				<div className='login-alert'>
+					<p>{alert}</p>
+				</div>
+
 				<Form.Group className='mb-4' controlId='usernameInput'>
 					<Form.Control placeholder='Username' onChange={handleUserInputChange} />
 				</Form.Group>
