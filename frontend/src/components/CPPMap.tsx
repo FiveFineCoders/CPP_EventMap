@@ -7,6 +7,7 @@ import ReactMapGL, {
 	ScaleControl,
 } from 'react-map-gl';
 import MapSidebar from './MapSidebar';
+import PopupForm from './PopupForm';
 import { AiFillPlusCircle } from 'react-icons/ai'; 
 
 mapboxgl.accessToken = `${process.env.REACT_APP_MAPBOXTOKEN}`;
@@ -36,11 +37,8 @@ const testBounds = new mapboxgl.LngLatBounds([-73.9876, 40.7661], [-73.9397, 40.
 
 export const CPPMap = (): JSX.Element => {
 	const MapContainerRef = useRef(null);
-	const [latitudeVal, setLatitude] = useState(34.05775617645074);
-	const [longitudeVal, setLongitude] = useState(-117.82261244351792);
-	const [zoomVal, setZoom] = useState(16);
-	const [mapWidth, setMapWidth] = useState(1000);
-	const [mapHeight, setMapHeight] = useState(800);
+	const [eventCreate, setEventCreate] = useState(false);
+	const [mapClicked, setMapClicked] = useState(false);
 
 	const [viewState, setViewState] = React.useState({
 		longitude: -117.82261244351792,
@@ -50,16 +48,23 @@ export const CPPMap = (): JSX.Element => {
 	});
 
 	const handleClick = () => {
-		var curMapWidth: number = mapWidth;
-		console.log(curMapWidth);
+		
+		// create event
+		if (!eventCreate) {
+			return
+		}
 
-		setMapWidth(curMapWidth + 100);
-		console.log(mapWidth);
+		setMapClicked(true)
+		console.log("event create is: " + eventCreate)
+		
+
 	};
 
-	function createEvent() {
+	/*function createEvent() {
+
 		console.log("hello there")
-	}
+		
+	}*/
 
 	//34.027805, -117.845633
 	//34.064494, -117.779088
@@ -75,18 +80,24 @@ export const CPPMap = (): JSX.Element => {
 					[-117.845633, 34.027805],
 					[-117.779088, 34.064494],
 				]}
+				onClick={handleClick}
 			>
 				<MapSidebar />
 				<GeolocateControl position='top-right' />
 				<FullscreenControl position='top-right' />
 				<NavigationControl position='top-right' />
 				<ScaleControl />
-
+				
+				<div id = "eventPopup">
+					<PopupForm isOpen = {mapClicked} togglePopup = {setEventCreate} isMapClicked = {setMapClicked}/>
+				</div>
+				
 				<div id="addEventIcon">
           			<AiFillPlusCircle 
               			size="70"
               			onClick={event => {
-                			createEvent()
+							setEventCreate(true)
+                			console.log("create event button tapped")
               			}}
             		/>
         		</div>
