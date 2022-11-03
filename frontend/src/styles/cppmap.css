@@ -1,0 +1,30 @@
+.popup-content {
+	border: 2px solid #47b115;
+	border-radius: 20px;
+	padding: 20px;
+	width: 500px;
+}
+
+.popup-button {
+	color: black;
+	background-color: #378c0f !important;
+	border: 2px solid #378c0f !important;
+}
+
+.popup-button:hover {
+	background-color: #47b115 !important;
+	border: 2px solid #47b115 !important;
+}
+
+.popup-button:active {
+	background-color: #378c0f !important;
+}
+
+.create-event-button {
+	color: black;
+}
+
+.create-event-button:hover {
+	transition-duration: 300ms;
+	color: #47b115;
+}
