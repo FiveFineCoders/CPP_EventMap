@@ -8,7 +8,8 @@ import ReactMapGL, {
 } from 'react-map-gl';
 import MapSidebar from './MapSidebar';
 import PopupForm from './PopupForm';
-import { AiFillPlusCircle } from 'react-icons/ai'; 
+import { AiFillPlusCircle } from 'react-icons/ai';
+import '../styles/cppmap.css';
 
 mapboxgl.accessToken = `${process.env.REACT_APP_MAPBOXTOKEN}`;
 
@@ -48,16 +49,13 @@ export const CPPMap = (): JSX.Element => {
 	});
 
 	const handleClick = () => {
-		
 		// create event
 		if (!eventCreate) {
-			return
+			return;
 		}
 
-		setMapClicked(true)
-		console.log("event create is: " + eventCreate)
-		
-
+		setMapClicked(true);
+		console.log('event create is: ' + eventCreate);
 	};
 
 	/*function createEvent() {
@@ -87,21 +85,25 @@ export const CPPMap = (): JSX.Element => {
 				<FullscreenControl position='top-right' />
 				<NavigationControl position='top-right' />
 				<ScaleControl />
-				
-				<div id = "eventPopup">
-					<PopupForm isOpen = {mapClicked} togglePopup = {setEventCreate} isMapClicked = {setMapClicked}/>
-				</div>
-				
-				<div id="addEventIcon">
-          			<AiFillPlusCircle 
-              			size="70"
-              			onClick={event => {
-							setEventCreate(true)
-                			console.log("create event button tapped")
-              			}}
-            		/>
-        		</div>
 
+				<div id='eventPopup'>
+					<PopupForm
+						isOpen={mapClicked}
+						togglePopup={setEventCreate}
+						isMapClicked={setMapClicked}
+					/>
+				</div>
+
+				<div id='addEventIcon'>
+					<AiFillPlusCircle
+						className='create-event-button'
+						size='70'
+						onClick={(event) => {
+							setEventCreate(true);
+							console.log('create event button tapped');
+						}}
+					/>
+				</div>
 			</ReactMapGL>
 		</div>
 	);
