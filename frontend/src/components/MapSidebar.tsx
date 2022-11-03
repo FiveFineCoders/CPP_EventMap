@@ -15,7 +15,7 @@ const MapSidebar = () => {
 
 	return (
 		<div style={{ display: 'flex', height: '100%' }}>
-			<Sidebar className='sidebar' defaultCollapsed={!showSidebar} collapsedWidth='0' width='300px'>
+			<Sidebar className='sidebar' defaultCollapsed={!showSidebar} collapsedWidth='0' width='265px'>
 				<Menu>
 					<SubMenu className='sub-menu' label='Filter' icon={<FaFilter />} defaultOpen={false}>
 						<Container id='main-container' className='d-grid h-100'>
