@@ -53,18 +53,6 @@ app.get('/event', (req: Request, res: Response) => {
 	res.send('Demo adding new data to database');
 });
 
-app.get('/user', (req: Request, res: Response) => {
-	const input = {
-		username: req.query.username,
-		password: req.query.password,
-	};
-	const user: IUser = new User(input);
-	console.log('user', user);
-	user.save();
-	console.log('Successfully saved data');
-	res.send('Demo adding new user to database');
-});
-
 app.get('/api/assignment3/johnsalinas', (req: Request, res: Response) => {
 	res.send('HTTP API for John Salinas -> working');
 });
