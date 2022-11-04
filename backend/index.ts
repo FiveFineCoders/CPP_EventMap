@@ -3,13 +3,11 @@ import dotenv from 'dotenv';
 import lodash from 'lodash';
 import * as ramda from 'ramda';
 import Event from './models/event.model';
-import User from './models/user.model';
 import CPPEvent from './schema/CPPEvent';
 import { dbConnect } from './dbConnect';
 import eventRouter from './routes/eventRoutes';
 import userRoutes from './routes/userRoutes';
 //import underscore from 'underscore';
-import IUser from './schema/IUser';
 
 dotenv.config();
 
