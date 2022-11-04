@@ -19,25 +19,24 @@ describe('Get Event Control', () => {
 		await dbDisconnect();
 	});
 
-    it('should return status code 406 if a required field is empty', async () => {
-        // Arrange
+	it('should return status code 406 if a required field is empty', async () => {
+		// Arrange
 		const data = await Event.create({
 			name: '',
-            startTime: new Date('2022-12-23T12:00:00.000+00:00'),
-            endTime: new Date('2022-12-23T14:00:00.000+00:00'),
-            room: '013',
-            building: '6',
-            description: 'Tiet time',
-            username: 'Brandon Tiet',
+			startTime: new Date('2022-12-23T12:00:00.000+00:00'),
+			endTime: new Date('2022-12-23T14:00:00.000+00:00'),
+			room: '013',
+			building: '6',
+			description: 'Tiet time',
+			username: 'Brandon Tiet',
 		});
 
-        //Act
-        const res = await req.post('/api/events/').send(data);
+		//Act
+		const res = await req.post('/api/events/').send(data);
 
-         //Assert
-         expect(res.status).toBe(406);
-         expect(res.body.id).toBeTruthy;
-         expect(res.body.message).toBe("Error: required data field is empty.");
-
-    });
+		//Assert
+		expect(res.status).toBe(406);
+		expect(res.body.id).toBeTruthy;
+		expect(res.body.message).toBe('Error: required data field is empty.');
+	});
 });
