@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import '../styles/sidebar.css';
+import { createEvent } from '../../../backend/controllers/createEventControl';
 
 const EventForm = () => {
 	const [eventName, setEventName] = useState("")
@@ -19,10 +20,15 @@ const EventForm = () => {
 
 		}
 	}
+		
+	const createEventSubmit = (event) => {
+		event.preventDefault();
+		console.log('Submitted');
+	};
 
 	return (
-		<Form>
-			<Form.Group className='mb-3' controlId='eventName' onChange={changeInput}>
+		<Form onSubmit={createEventSubmit}>
+			<Form.Group className='mb-3' controlId='eventName'>
 				<Form.Label> Event Name </Form.Label>
 				<Form.Control placeholder='Ex: Halloween Party' />
 			</Form.Group>
@@ -51,10 +57,11 @@ const EventForm = () => {
 				<Form.Label> Description </Form.Label>
 				<Form.Control as='textarea' rows={3} placeholder='Ex: Dress up and have fun' />
 			</Form.Group>
-
-			<Button variant='primary' type='submit'>
-				Submit
-			</Button>
+			<div className='d-grid'>
+				<Button className='popup-button' type='submit' size='lg'>
+					Create Event
+				</Button>
+			</div>
 		</Form>
 	);
 };

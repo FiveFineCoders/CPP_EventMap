@@ -8,7 +8,8 @@ import ReactMapGL, {
 } from 'react-map-gl';
 import MapSidebar from './MapSidebar';
 import PopupForm from './PopupForm';
-import { AiFillPlusCircle } from 'react-icons/ai'; 
+import { AiFillPlusCircle } from 'react-icons/ai';
+import '../styles/cppmap.css';
 
 // @ts-ignore
 // eslint-disable-next-line import/no-webpack-loader-syntax
@@ -55,10 +56,9 @@ export const CPPMap = (): JSX.Element => {
 	});
 
 	const handleClick = () => {
-		
 		// create event
 		if (!eventCreate) {
-			return
+			return;
 		}
 
 		setMapClicked(true)
@@ -115,6 +115,16 @@ export const CPPMap = (): JSX.Element => {
             		/>
         		</div>
 
+				<div id='addEventIcon'>
+					<AiFillPlusCircle
+						className='create-event-button'
+						size='70'
+						onClick={(event) => {
+							setEventCreate(true);
+							console.log('create event button tapped');
+						}}
+					/>
+				</div>
 			</ReactMapGL>
 		</div>
 	);

@@ -6,7 +6,8 @@ import Event from './models/event.model';
 import CPPEvent from './schema/CPPEvent';
 import { dbConnect } from './dbConnect';
 import eventRouter from './routes/eventRoutes';
-import underscore from 'underscore';
+import userRoutes from './routes/userRoutes';
+//import underscore from 'underscore';
 
 dotenv.config();
 
@@ -30,6 +31,7 @@ app.use(express.urlencoded({ extended: false }));
 //
 
 app.use('/api/events', eventRouter);
+app.use('/api/users', userRoutes);
 
 // assignments
 
@@ -83,13 +85,18 @@ app.get('/api/assignment4/brandonmoya', (req: Request, res: Response) => {
 	);
 });
 
-const list = [[9,5,7], [8,4,9]];
+/*
+const list = [
+	[9, 5, 7],
+	[8, 4, 9],
+];
 app.get('/api/assignment4/aamirsajjad', (req: Request, res: Response) => {
-    res.send(underscore.invoke(list,'sort'));
-})
+	res.send(underscore.invoke(list, 'sort'));
+});
+*/
 
-app.get("/", (req: Request, res: Response) => {
-  res.send("Server is running!");
+app.get('/', (req: Request, res: Response) => {
+	res.send('Server is running!');
 });
 
 app.listen(port, () => {

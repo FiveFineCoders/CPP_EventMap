@@ -19,15 +19,15 @@ describe('Get Event Control', () => {
 		await dbDisconnect();
 	});
 
-	it('should return status code 406 if required field is null', async() => {
+	it('should return status code 406 if required field is null', async () => {
 		//Arrange
 		const data = {
 			name: 'AamirEvent',
 			startTime: new Date('2022-12-22T12:00:00.000+00:00'),
-			room: '213', 
+			room: '213',
 			description: 'The Aamir Event.',
 			username: 'Aamir',
-		}
+		};
 
 		//Act
 		const res = await req.post('/api/events/').send(data);
@@ -36,5 +36,4 @@ describe('Get Event Control', () => {
 		expect(res.status).toBe(406);
 		expect(res.body.message).toBe('Error: Null fields!');
 	});
-
 });
