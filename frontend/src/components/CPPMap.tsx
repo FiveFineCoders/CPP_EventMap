@@ -10,6 +10,11 @@ import MapSidebar from './MapSidebar';
 import PopupForm from './PopupForm';
 import { AiFillPlusCircle } from 'react-icons/ai'; 
 
+// @ts-ignore
+// eslint-disable-next-line import/no-webpack-loader-syntax
+mapboxgl.workerClass = require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default;	// exclude mapbox GL JS from transpilation (use ES5 not ES6)
+// load worker class (increases bundle size and reduces rendering performance)
+
 mapboxgl.accessToken = `${process.env.REACT_APP_MAPBOXTOKEN}`;
 
 const mapBounds = [
@@ -39,6 +44,8 @@ export const CPPMap = (): JSX.Element => {
 	const MapContainerRef = useRef(null);
 	const [eventCreate, setEventCreate] = useState(false);
 	const [mapClicked, setMapClicked] = useState(false);
+	const [longitude, setLongitude] = useState(0);
+	const [latitude, setLatitude] = useState(0);
 
 	const [viewState, setViewState] = React.useState({
 		longitude: -117.82261244351792,
@@ -56,6 +63,7 @@ export const CPPMap = (): JSX.Element => {
 
 		setMapClicked(true)
 		console.log("event create is: " + eventCreate)
+		//console.log(this.position)
 		
 
 	};
@@ -81,6 +89,11 @@ export const CPPMap = (): JSX.Element => {
 					[-117.779088, 34.064494],
 				]}
 				onClick={handleClick}
+				/*onClick={event => {
+					handle
+					console.log("Latitude: " + event.lngLat.lat)
+					console.log("Longitude: " + event.lngLat.lng)
+				}}*/
 			>
 				<MapSidebar />
 				<GeolocateControl position='top-right' />
@@ -89,7 +102,7 @@ export const CPPMap = (): JSX.Element => {
 				<ScaleControl />
 				
 				<div id = "eventPopup">
-					<PopupForm isOpen = {mapClicked} togglePopup = {setEventCreate} isMapClicked = {setMapClicked}/>
+					<PopupForm isOpen = {mapClicked} togglePopup = {setEventCreate} isMapClicked = {setMapClicked} longitudeVal = {longitude} latitudeVal = {latitude}/>
 				</div>
 				
 				<div id="addEventIcon">
@@ -97,7 +110,7 @@ export const CPPMap = (): JSX.Element => {
               			size="70"
               			onClick={event => {
 							setEventCreate(true)
-                			console.log("create event button tapped")
+                			console.log("create event button tapped: round 4 fixed?")
               			}}
             		/>
         		</div>
