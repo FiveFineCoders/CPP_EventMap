@@ -3,7 +3,7 @@ import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import EventForm from './EventForm';
 
-const PopupForm = ( { isOpen, togglePopup, isMapClicked } ) => {
+const PopupForm = ( { isOpen, togglePopup, isMapClicked, longitudeVal, latitudeVal } ) => {
   const closeModal = () => {
     togglePopup(false)
     isMapClicked(false)
