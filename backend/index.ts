@@ -7,6 +7,7 @@ import CPPEvent from './schema/CPPEvent';
 import { dbConnect } from './dbConnect';
 import eventRouter from './routes/eventRoutes';
 import userRoutes from './routes/userRoutes';
+import cors from 'cors';
 //import underscore from 'underscore';
 
 dotenv.config();
@@ -14,6 +15,7 @@ dotenv.config();
 dbConnect();
 const app: Express = express();
 const port = 8080;
+app.use(cors());
 
 /*
 const mongoose: Mongoose = require('mongoose');
