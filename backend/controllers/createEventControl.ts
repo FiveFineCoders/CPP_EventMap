@@ -2,7 +2,8 @@ import express, { Request, Response } from 'express';
 import Event from '../models/event.model';
 
 export const createEvent = async (req: Request, res: Response) => {
-	const { name, startTime, endTime, room, building, description, username } = req.body;
+	const { name, startTime, endTime, room, building, description, username, longitude, latitude } =
+		req.body;
 
 	console.log(name);
 
@@ -14,7 +15,9 @@ export const createEvent = async (req: Request, res: Response) => {
 		room == null ||
 		building == null ||
 		description == null ||
-		username == null
+		username == null ||
+		longitude == null ||
+		latitude == null
 	) {
 		res.status(406).json({ message: 'Error: Null fields!' });
 	}
@@ -27,7 +30,9 @@ export const createEvent = async (req: Request, res: Response) => {
 		room.length == 0 ||
 		building.length == 0 ||
 		description.length == 0 ||
-		username.length == 0
+		username.length == 0 ||
+		longitude.length == 0 ||
+		latitude.length == 0
 	) {
 		res.status(406).json({ message: 'Error: Empty fields!' });
 	}
@@ -48,6 +53,8 @@ export const createEvent = async (req: Request, res: Response) => {
 		building: building,
 		description: description,
 		username: username,
+		longitude: longitude,
+		latitude: latitude,
 	});
 
 	// failed to create event

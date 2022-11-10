@@ -10,6 +10,8 @@ const EventSchema: Schema = new Schema({
 	description: { type: String, required: true },
 	date: { type: Date, default: Date.now },
 	username: { type: String, required: true },
+	longitude: { type: Number, required: true },
+	latitude: { type: Number, required: true },
 });
 
 export default mongoose.model<CPPEvent>('Event', EventSchema);
