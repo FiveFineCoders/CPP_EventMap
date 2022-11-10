@@ -2,8 +2,10 @@ import React, { useRef, useEffect, useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import '../styles/sidebar.css';
 import { createEvent } from '../../../backend/controllers/createEventControl';
+import axios from 'axios';
+import { Socket } from 'net';
 
-const EventForm = () => {
+const EventForm = ( { longitude, latitude }) => {
 	const [eventName, setEventName] = useState("")
 	const [eventStartTime, setEventStartTime] = useState(new Date())
 	const [eventEndTime, setEventEndTime] = useState(new Date())
@@ -14,16 +16,40 @@ const EventForm = () => {
 	function changeInput() {
 		
 	}
-
-	function createEvent() {
-		if (!eventName || !eventStartTime || !eventEndTime || !eventRoom || !eventBuilding) {
-
-		}
-	}
 		
 	const createEventSubmit = (event) => {
 		event.preventDefault();
 		console.log('Submitted');
+
+		if (!eventName || !eventStartTime || !eventEndTime || !eventRoom || !eventBuilding || !longitude || !latitude || longitude == 0 || latitude == 0) {
+			console.log("required field missing")
+			return
+		}
+
+		const postRequest = async () => {
+			try {
+				const { data } = await axios.post(
+					'/api/events',
+					{
+						eventName,
+						eventStartTime,
+						eventEndTime,
+						eventRoom,
+						eventBuilding,
+						eventDescription,
+						longitude,
+						latitude
+					}
+				);	// end axios post
+
+				console.log(data);
+
+			}	// end try
+			catch (error) {
+				console.log(error)
+			}
+		}
+
 	};
 
 	return (

@@ -44,7 +44,7 @@ const testBounds = new mapboxgl.LngLatBounds([-73.9876, 40.7661], [-73.9397, 40.
 export const CPPMap = (): JSX.Element => {
 	const MapContainerRef = useRef(null);
 	const [eventCreate, setEventCreate] = useState(false);
-	const [mapClicked, setMapClicked] = useState(false);
+	const [activateEventForm, setActivateEventForm] = useState(false);
 	const [longitude, setLongitude] = useState(0);
 	const [latitude, setLatitude] = useState(0);
 
@@ -55,7 +55,7 @@ export const CPPMap = (): JSX.Element => {
 		pitch: 50,
 	});
 
-	const handleClick = () => {
+	/*const handleClick = ( event ) => {
 		// create event
 		if (!eventCreate) {
 			return;
@@ -64,15 +64,7 @@ export const CPPMap = (): JSX.Element => {
 		setMapClicked(true)
 		console.log("event create is: " + eventCreate)
 		//console.log(this.position)
-		
-
-	};
-
-	/*function createEvent() {
-
-		console.log("hello there")
-		
-	}*/
+	};*/
 
 	//34.027805, -117.845633
 	//34.064494, -117.779088
@@ -88,12 +80,21 @@ export const CPPMap = (): JSX.Element => {
 					[-117.845633, 34.027805],
 					[-117.779088, 34.064494],
 				]}
-				onClick={handleClick}
-				/*onClick={event => {
-					handle
-					console.log("Latitude: " + event.lngLat.lat)
-					console.log("Longitude: " + event.lngLat.lng)
-				}}*/
+				//onClick={handleClick}
+				onClick={event => {
+
+					// create event
+					if (!eventCreate) {
+					return;
+					}
+
+					console.log("event create is: " + eventCreate)
+
+					setLongitude(event.lngLat.lng)
+					setLatitude(event.lngLat.lng)
+					
+					setActivateEventForm(true)	// show popup
+				}}
 			>
 				<MapSidebar />
 				<GeolocateControl position='top-right' />
@@ -102,7 +103,7 @@ export const CPPMap = (): JSX.Element => {
 				<ScaleControl />
 				
 				<div id = "eventPopup">
-					<PopupForm isOpen = {mapClicked} togglePopup = {setEventCreate} isMapClicked = {setMapClicked} longitudeVal = {longitude} latitudeVal = {latitude}/>
+					<PopupForm isOpen = {activateEventForm} togglePopup = {setEventCreate} isEventFormActive = {setActivateEventForm} longitudeVal = {longitude} latitudeVal = {latitude}/>
 				</div>
 				
 				<div id="addEventIcon">
