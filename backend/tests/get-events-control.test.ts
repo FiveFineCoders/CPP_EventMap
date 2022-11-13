@@ -40,6 +40,8 @@ describe('Get Event Control', () => {
 			building: '8',
 			description: 'Bla blah',
 			username: 'Red',
+			longitude: 0,
+			latitude: 0,
 		});
 
 		// Act
@@ -55,5 +57,7 @@ describe('Get Event Control', () => {
 		expect(res.body[0].building).toBe('8');
 		expect(res.body[0].description).toBe('Bla blah');
 		expect(res.body[0].username).toBe('Red');
+		expect(res.body[0].longitude).toBe(0);
+		expect(res.body[0].latitude).toBe(0);
 	});
 });

@@ -9,6 +9,8 @@ interface CPPEvent extends Document {
 	description: string;
 	date: Date;
 	username: string;
+	longitude: Number;
+	latitude: Number;
 }
 
 export default CPPEvent;
