@@ -77,21 +77,18 @@ export const CPPMap = (): JSX.Element => {
 		pitch: 50,
 	});
 
-	useEffect(() => {
+	useEffect(() => {	// function is called after rendering map
 		getMarkers();
-		//console.log(eventMarkerList);
-	}, [])
+	}, [])	// end useEffect
 
-	const getMarkers = async () => {
+	const getMarkers = async () => {	// retreives all events from server and adds them to an array
 
 		try {
-			const { data } = await axios.get('api/events');
+			const { data } = await axios.get('api/events');	// send get request to server
 
-			data.forEach((marker: eventMarker) => {
-				setEventMarkerList(oldMarker => [...oldMarker, marker]);
+			data.forEach((marker: eventMarker) => {	// for loop inserts each event into array
+				setEventMarkerList(prevMarker => [...prevMarker, marker]);	// add new marker to end of array
 			});
-
-			//console.log(data)
 
 		}	// end try
 		catch(error) {
@@ -122,16 +119,16 @@ export const CPPMap = (): JSX.Element => {
 					[-117.845633, 34.027805],
 					[-117.779088, 34.064494],
 				]}
-				//onClick={handleClick}
 				onClick={event => {
 
 					// create event
-					if (!eventCreate) {
-					return;
+					if (!eventCreate) {	// don't show event creation form if event create button is not clicked
+						return;
 					}
 
 					console.log("event create is: " + eventCreate)
 
+					// set event's longitude and latitude to mouse's location on click
 					setLongitude(event.lngLat.lng)
 					setLatitude(event.lngLat.lat)
 
@@ -140,10 +137,8 @@ export const CPPMap = (): JSX.Element => {
 			>
 
 				{
-					eventMarkerList.map((event) => (
-						<Marker key={event._id} longitude={event.longitude} latitude={event.latitude}>
-					
-						</Marker>
+					eventMarkerList.map((event) => (	// for loop iterates through array to render/display markers on the map
+						<Marker key={event._id} longitude={event.longitude} latitude={event.latitude}/>
 					))
 				}
 				
@@ -154,7 +149,14 @@ export const CPPMap = (): JSX.Element => {
 				<ScaleControl />
 				
 				<div id = "eventPopup">
-					<PopupForm isOpen = {activateEventForm} togglePopup = {setEventCreate} isEventFormActive = {setActivateEventForm} longitudeVal = {longitude} latitudeVal = {latitude}/>
+					<PopupForm 
+						isOpen = {activateEventForm} 
+						togglePopup = {setEventCreate} 
+						isEventFormActive = {setActivateEventForm} 
+						longitudeVal = {longitude} 
+						latitudeVal = {latitude}
+						setEventList = {setEventMarkerList}
+					/>
 				</div>
 				
 				<div id="addEventIcon">
@@ -174,7 +176,7 @@ export const CPPMap = (): JSX.Element => {
 						onClick={(event) => {
 							setEventCreate(true);
 							console.log('create event button tapped');
-							console.log(eventMarkerList);
+							//console.log(eventMarkerList);
 						}}
 					/>
 				</div>
