@@ -5,11 +5,13 @@ import ReactMapGL, {
 	GeolocateControl,
 	NavigationControl,
 	ScaleControl,
+	Marker,
 } from 'react-map-gl';
 import MapSidebar from './MapSidebar';
 import PopupForm from './PopupForm';
 import { AiFillPlusCircle } from 'react-icons/ai';
 import '../styles/cppmap.css';
+import axios from 'axios';
 
 // @ts-ignore
 // eslint-disable-next-line import/no-webpack-loader-syntax
@@ -36,10 +38,29 @@ type CPPMapProps = {
 	zoom: Number;
 };
 
+type eventMarker = {
+	_id: number;
+	eventName: string;
+	eventStartTime: Date;
+	eventEndTime: Date;
+	eventRoom: String;
+	eventBuilding: String;
+	eventDescript: String;
+	username: String;
+	longitude: number;
+	latitude: number;
+};
+
 const testBounds = new mapboxgl.LngLatBounds([-73.9876, 40.7661], [-73.9397, 40.8002]);
 
 // CPP Longitude and Latitude
 //34.05775617645074, -117.82261244351792
+
+/*const MapMarkers = (): JSX.Element => {
+
+
+	
+}	// end MapMarkers const*/
 
 export const CPPMap = (): JSX.Element => {
 	const MapContainerRef = useRef(null);
@@ -47,6 +68,7 @@ export const CPPMap = (): JSX.Element => {
 	const [activateEventForm, setActivateEventForm] = useState(false);
 	const [longitude, setLongitude] = useState(0);
 	const [latitude, setLatitude] = useState(0);
+	const [eventMarkerList, setEventMarkerList] = useState<eventMarker[]>([])	// initialize empty array
 
 	const [viewState, setViewState] = React.useState({
 		longitude: -117.82261244351792,
@@ -55,16 +77,36 @@ export const CPPMap = (): JSX.Element => {
 		pitch: 50,
 	});
 
-	/*const handleClick = ( event ) => {
-		// create event
-		if (!eventCreate) {
-			return;
-		}
+	useEffect(() => {
+		getMarkers();
+		//console.log(eventMarkerList);
+	}, [])
 
-		setMapClicked(true)
-		console.log("event create is: " + eventCreate)
-		//console.log(this.position)
-	};*/
+	const getMarkers = async () => {
+
+		try {
+			const { data } = await axios.get('api/events');
+
+			data.forEach((marker: eventMarker) => {
+				setEventMarkerList(oldMarker => [...oldMarker, marker]);
+			});
+
+			//console.log(data)
+
+		}	// end try
+		catch(error) {
+			// end try
+			if (axios.isAxiosError(error)) {
+				console.log('Axios error: ', error.message);
+				return error.message;
+			} else {
+				console.log(error);
+				return 'Unexpected general error';
+			}
+		}	// end catch
+
+	}	// end getMarkers const
+
 
 	//34.027805, -117.845633
 	//34.064494, -117.779088
@@ -91,11 +133,20 @@ export const CPPMap = (): JSX.Element => {
 					console.log("event create is: " + eventCreate)
 
 					setLongitude(event.lngLat.lng)
-					setLatitude(event.lngLat.lng)
-					
+					setLatitude(event.lngLat.lat)
+
 					setActivateEventForm(true)	// show popup
 				}}
 			>
+
+				{
+					eventMarkerList.map((event) => (
+						<Marker key={event._id} longitude={event.longitude} latitude={event.latitude}>
+					
+						</Marker>
+					))
+				}
+				
 				<MapSidebar />
 				<GeolocateControl position='top-right' />
 				<FullscreenControl position='top-right' />
@@ -123,6 +174,7 @@ export const CPPMap = (): JSX.Element => {
 						onClick={(event) => {
 							setEventCreate(true);
 							console.log('create event button tapped');
+							console.log(eventMarkerList);
 						}}
 					/>
 				</div>
