@@ -4,7 +4,8 @@ import '../styles/sidebar.css';
 import { createEvent } from '../../../backend/controllers/createEventControl';
 import axios from 'axios';
 
-axios.defaults.baseURL = "http://localhost:8080"
+axios.defaults.baseURL = 'http://localhost:8080';
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 type eventAcceptedResponse = {
 	eventName: string;
@@ -12,105 +13,93 @@ type eventAcceptedResponse = {
 	eventEndTime: Date;
 	eventRoom: String;
 	eventBuilding: String;
-	eventDescription: String;
+	eventDescript: String;
 	username: String;
 	longitude: number;
 	latitude: number;
 	id: number;
-}
+};
 
-const EventForm = ( { longitude, latitude }) => {
-	const [eventName, setEventName] = useState("")
-	const [eventStartTime, setEventStartTime] = useState(new Date())
-	const [eventEndTime, setEventEndTime] = useState(new Date())
-	const [eventRoom, setEventRoom] = useState("")
-	const [eventBuilding, setEventBuilding] = useState("")
-	const [eventDescription, setEventDescription] = useState("")
+const username = 'John';
 
-	const saveInput = (event) => {	// save input in field
-		const eventField = event.target.id
-		
-		switch(eventField) {
-			case "eventName":	// uses control ID
-				setEventName(event.target.value)
+const EventForm = ({ longitude, latitude }) => {
+	const [eventName, setEventName] = useState('');
+	const [eventStartTime, setEventStartTime] = useState(new Date());
+	const [eventEndTime, setEventEndTime] = useState(new Date());
+	const [eventRoom, setEventRoom] = useState('');
+	const [eventBuilding, setEventBuilding] = useState('');
+	const [eventDescription, setEventDescription] = useState('');
+
+	const saveInput = (event) => {
+		// save input in field
+		const eventField = event.target.id;
+
+		switch (eventField) {
+			case 'eventName': // uses control ID
+				setEventName(event.target.value);
 				break;
-			case "eventStartTime":	
-				setEventStartTime(event.target.value)
+			case 'eventStartTime':
+				setEventStartTime(event.target.value);
 				break;
-			case "eventEndTime":	
-				setEventEndTime(event.target.value)
+			case 'eventEndTime':
+				setEventEndTime(event.target.value);
 				break;
-			case "eventRoom":	
-				setEventRoom(event.target.value)
+			case 'eventRoom':
+				setEventRoom(event.target.value);
 				break;
-			case "eventBuilding":	
-				setEventBuilding(event.target.value)
+			case 'eventBuilding':
+				setEventBuilding(event.target.value);
 				break;
-			case "eventDescription":	
-				setEventDescription(event.target.value)
+			case 'eventDescription':
+				setEventDescription(event.target.value);
 				break;
 			default:
-				console.log("Error: no specified field found")
-		}	// end switch
+				console.log('Error: no specified field found');
+		} // end switch
+	}; // end saveInput const
 
-	};	// end saveInput const
-		
-	const createEventSubmit = (event) => {
+	// handle event form submit
+	const submitEventCreate = (event) => {
 		event.preventDefault();
 
-		console.log("Event name: " + eventName);
-		console.log("Event start time: " + eventStartTime);
-		console.log("Event end time: " + eventEndTime);
-		console.log("Event room: " + eventRoom);
-		console.log("Event building: " + eventBuilding);
-		console.log("Event description: " + eventDescription);
+		console.log('Event name: ' + eventName);
+		console.log('Event start time: ' + eventStartTime);
+		console.log('Event end time: ' + eventEndTime);
+		console.log('Event room: ' + eventRoom);
+		console.log('Event building: ' + eventBuilding);
+		console.log('Event description: ' + eventDescription);
 
-		if (!eventName || !eventStartTime || !eventEndTime || !eventRoom || !eventBuilding || !longitude || !latitude || longitude == 0 || latitude == 0) {
-			console.log("required field missing")
-			return
-		}
-
-		const username = "John";
-
-		const postRequest = async () => {
-			try {
-				const { data } = await axios.post<eventAcceptedResponse>(
-					'/api/events',
-					{
-						eventName,
-						eventStartTime,
-						eventEndTime,
-						eventRoom,
-						eventBuilding,
-						eventDescription,
-						username,
-						longitude,
-						latitude
-					}
-				);	// end axios post
-
-				console.log(data);
-
-			}	// end try
-			catch (error) {
-				if (axios.isAxiosError(error)) {
-					console.log("Axios error: ", error.message);
-					return error.message;
-				}
-				else {
-					console.log(error)
-				}
-				
-			}	// end catch
-		}	// end post request const
-
-		postRequest();	// send post request containing event data
+		postRequest(); // send post request containing event data
 		console.log('Submitted');
+	}; // end createEventSubmit
 
-	};	// end createEventSubmit
+	const postRequest = async () => {
+		try {
+			const { data } = await axios.post<eventAcceptedResponse>('api/events', {
+				eventName: eventName,
+				eventStartTime: eventStartTime,
+				eventEndTime: eventEndTime,
+				eventRoom: eventRoom,
+				eventBuilding: eventBuilding,
+				eventDescript: eventDescription,
+				username: username,
+				longitude: longitude,
+				latitude: latitude,
+			}); // end axios post
+		} catch (error) {
+			// end try
+			if (axios.isAxiosError(error)) {
+				console.log('Axios error: ', error.message);
+				return error.message;
+			} else {
+				console.log(error);
+				return 'Unexpected general error';
+			}
+		} // end catch
+	}; // end post request const
 
 	return (
-		<Form onSubmit={createEventSubmit}>
+		<Form>
 			<Form.Group className='mb-3' controlId='eventName' onChange={saveInput}>
 				<Form.Label> Event Name </Form.Label>
 				<Form.Control placeholder='Ex: Halloween Party' />
@@ -141,7 +130,7 @@ const EventForm = ( { longitude, latitude }) => {
 				<Form.Control as='textarea' rows={3} placeholder='Ex: Dress up and have fun' />
 			</Form.Group>
 			<div className='d-grid'>
-				<Button className='popup-button' type='submit' size='lg'>
+				<Button className='popup-button' type='submit' size='lg' onClick={submitEventCreate}>
 					Create Event
 				</Button>
 			</div>
