@@ -151,7 +151,7 @@ export const Login = (): JSX.Element => {
 				</div>
 
 				<div className=' d-flex justify-content-center' onClick={toggleMode}>
-					<p className='login-mode-switch'>
+					<p className='login-mode-switch' onClick={handleLogin}>
 						{loginMode ? 'Create an account?' : 'Already have an account?'}
 					</p>
 				</div>
