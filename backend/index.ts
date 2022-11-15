@@ -12,25 +12,14 @@ import cors from 'cors';
 
 dotenv.config();
 
-dbConnect();
 const app: Express = express();
 const port = 8080;
+
+dbConnect();
+
 app.use(cors());
-
-/*
-const mongoose: Mongoose = require('mongoose');
-mongoose.connect(`${process.env.MONGO_DB_CLUSTER}`, (err) => {
-	if (err) {
-		console.log(err);
-	}
-	console.log('Connected to database');
-});
-*/
-
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-
-//
+app.use(express.urlencoded({ extended: true }));
 
 app.use('/api/events', eventRouter);
 app.use('/api/users', userRoutes);
