@@ -22,36 +22,47 @@ type eventAcceptedResponse = {
 
 const username = 'John';
 
-const EventForm = ({ longitude, latitude, setEventMarkerList, setEventCreate, setActivateEventForm }) => {
+const EventForm = ({
+	longitude,
+	latitude,
+	setEventMarkerList,
+	setEventCreate,
+	setActivateEventForm,
+}) => {
 	const [eventName, setEventName] = useState('');
 	const [eventStartTime, setEventStartTime] = useState(new Date());
 	const [eventEndTime, setEventEndTime] = useState(new Date());
 	const [eventRoom, setEventRoom] = useState('');
 	const [eventBuilding, setEventBuilding] = useState('');
 	const [eventDescription, setEventDescription] = useState('');
+	const [eventCategoryColor, setEventCategoryColor] = useState('');
 
 	const saveInput = (event) => {
 		// save input in field
 		const eventField = event.target.id;
+		const eventValue = event.target.value;
 
 		switch (eventField) {
 			case 'eventName': // uses control ID
-				setEventName(event.target.value);
+				setEventName(eventValue);
 				break;
 			case 'eventStartTime':
-				setEventStartTime(event.target.value);
+				setEventStartTime(eventValue);
 				break;
 			case 'eventEndTime':
-				setEventEndTime(event.target.value);
+				setEventEndTime(eventValue);
 				break;
 			case 'eventRoom':
-				setEventRoom(event.target.value);
+				setEventRoom(eventValue);
 				break;
 			case 'eventBuilding':
-				setEventBuilding(event.target.value);
+				setEventBuilding(eventValue);
 				break;
 			case 'eventDescription':
-				setEventDescription(event.target.value);
+				setEventDescription(eventValue);
+				break;
+			case 'eventCategoryColor':
+				setEventCategoryColor(eventValue);
 				break;
 			default:
 				console.log('Error: no specified field found');
@@ -71,17 +82,21 @@ const EventForm = ({ longitude, latitude, setEventMarkerList, setEventCreate, se
 
 		postRequest(); // send post request containing event data
 
-		setEventMarkerList(prevMarker => [...prevMarker, { 
-			eventName: eventName,
-			eventStartTime: eventStartTime,
-			eventEndTime: eventEndTime,
-			eventRoom: eventRoom,
-			eventBuilding: eventBuilding,
-			eventDescript: eventDescription,
-			username: username,
-			longitude: longitude,
-			latitude: latitude }
-		]);	// add marker to map such that user doesn't need to refresh to see it
+		setEventMarkerList((prevMarker) => [
+			...prevMarker,
+			{
+				eventName: eventName,
+				eventCategoryColor: eventCategoryColor,
+				eventStartTime: eventStartTime,
+				eventEndTime: eventEndTime,
+				eventRoom: eventRoom,
+				eventBuilding: eventBuilding,
+				eventDescript: eventDescription,
+				username: username,
+				longitude: longitude,
+				latitude: latitude,
+			},
+		]); // add marker to map such that user doesn't need to refresh to see it
 
 		console.log('Submitted');
 
@@ -122,6 +137,19 @@ const EventForm = ({ longitude, latitude, setEventMarkerList, setEventCreate, se
 				<Form.Control placeholder='Ex: Halloween Party' />
 			</Form.Group>
 
+			<Form.Group className='mb-3' controlId='eventCategory' onChange={saveInput}>
+				<Form.Label>Category</Form.Label>
+				<Form.Select aria-label='Category'>
+					<option>Open this select menu</option>
+					<option value='#40c418'>Official</option>
+					<option value='#1877c4'>Social</option>
+					<option value='#dbdb16'>Club</option>
+					<option value='#e0140d'>Study</option>
+					<option value='#e0700d'>Tutor</option>
+					<option value='#000000'>Other</option>
+				</Form.Select>
+			</Form.Group>
+
 			<Form.Group className='mb-3' controlId='eventStartTime' onChange={saveInput}>
 				<Form.Label> Start Time </Form.Label>
 				<Form.Control type='datetime-local' />
@@ -131,16 +159,17 @@ const EventForm = ({ longitude, latitude, setEventMarkerList, setEventCreate, se
 				<Form.Label> End Time </Form.Label>
 				<Form.Control type='datetime-local' />
 			</Form.Group>
+			<div className='d-flex flex-row justify-content-between'>
+				<Form.Group className='mb-3' controlId='eventRoom' onChange={saveInput}>
+					<Form.Label> Room </Form.Label>
+					<Form.Control placeholder='Ex: 345' />
+				</Form.Group>
 
-			<Form.Group className='mb-3' controlId='eventRoom' onChange={saveInput}>
-				<Form.Label> Room </Form.Label>
-				<Form.Control placeholder='Ex: 345' />
-			</Form.Group>
-
-			<Form.Group className='mb-3' controlId='eventBuilding' onChange={saveInput}>
-				<Form.Label> Building </Form.Label>
-				<Form.Control placeholder='Ex: 8' />
-			</Form.Group>
+				<Form.Group className='mb-3' controlId='eventBuilding' onChange={saveInput}>
+					<Form.Label> Building </Form.Label>
+					<Form.Control placeholder='Ex: 8' />
+				</Form.Group>
+			</div>
 
 			<Form.Group className='mb-3' controlId='eventDescription' onChange={saveInput}>
 				<Form.Label> Description </Form.Label>
