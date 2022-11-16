@@ -30,6 +30,7 @@ const initialViewport = {
 type eventMarker = {
 	_id: number;
 	eventName: string;
+	eventCategoryColor: string;
 	eventStartTime: Date;
 	eventEndTime: Date;
 	eventRoom: String;
@@ -118,13 +119,13 @@ export const CPPMap = (): JSX.Element => {
 			>
 				{eventMarkerList.map(
 					(
-						event, // for loop iterates through array to render/display markers on the map
+						eventObj, // for loop iterates through array to render/display markers on the map
 					) => (
 						<Marker
-							key={event._id}
-							longitude={event.longitude}
-							latitude={event.latitude}
-							color={'#1fe81c'}
+							key={eventObj._id}
+							longitude={eventObj.longitude}
+							latitude={eventObj.latitude}
+							color={eventObj.eventCategoryColor}
 						/>
 					),
 				)}
