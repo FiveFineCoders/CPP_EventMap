@@ -5,6 +5,7 @@ export const createEvent = async (req: Request, res: Response) => {
 	console.log(req.body);
 	const {
 		eventName,
+		eventCategoryColor,
 		eventStartTime,
 		eventEndTime,
 		eventRoom,
@@ -20,6 +21,7 @@ export const createEvent = async (req: Request, res: Response) => {
 	// check for any missing fields
 	if (
 		eventName == null ||
+		eventCategoryColor == null ||
 		eventStartTime == null ||
 		eventEndTime == null ||
 		eventRoom == null ||
@@ -35,6 +37,7 @@ export const createEvent = async (req: Request, res: Response) => {
 	// check for length of fields
 	if (
 		eventName.length == 0 ||
+		eventCategoryColor.length == 0 ||
 		eventStartTime.length == 0 ||
 		eventEndTime.length == 0 ||
 		eventRoom.length == 0 ||
@@ -57,6 +60,7 @@ export const createEvent = async (req: Request, res: Response) => {
 	// attempt to create new event
 	const newEvent = await Event.create({
 		name: eventName,
+		category: eventCategoryColor,
 		startTime: eventStartTime,
 		endTime: eventEndTime,
 		room: eventRoom,
