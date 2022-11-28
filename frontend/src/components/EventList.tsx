@@ -44,25 +44,27 @@ export const EventList = () => {
             <table className="table table-striped table-bordered">
                 <thead>
                     <tr>
+                        <th>Date Created</th>
                         <th>Username</th>
                         <th>Event Name</th>
                         <th>Building</th>
                         <th>Room</th>
+                        <th>Date</th>
                         <th>Start Time</th>
                         <th>End Time</th>
-                        <th>Date</th>
                     </tr>
                 </thead>
                 <tbody>
                     {events && events.map(event =>
                         <tr key={Math.floor(Math.random() * 1000+1)}>
+                            <td>{new Date(event.date).toLocaleDateString()}</td>
                             <td>{event.username}</td>
                             <td>{event.name}</td>
                             <td>{event.building}</td>
                             <td>{event.room}</td>
+                            <td>{new Date(event.startTime).toLocaleDateString()}</td>
                             <td>{new Date(event.startTime).toLocaleTimeString()}</td>
                             <td>{new Date(event.endTime).toLocaleTimeString()}</td>
-                            <td>{new Date(event.date).toLocaleDateString()}</td>
                         </tr>
                         )}
                 </tbody>
