@@ -1,13 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { isShorthandPropertyAssignment } from 'typescript';
+import shortid from 'shortid';
+
+
+type event = {
+	name: String;
+	startTime: Date;
+	endTime: Date;
+	room: String;
+	building: String;
+	description: String;
+    date: Date;
+	username: String;
+	longitude: number;
+	latitude: number;
+};
 
 export const EventList = () => {
-    const [events, setEvents] = useState([
-        { id: 1, username: 'Brandon', name: 'Birthday!', building: '8', room: '50', date: new Date('2022-12-23T11:00:00.000+00:00')},
-        { id: 2, username: 'Vu', name: 'Christmas Party', building: '5', room: '20', date: new Date('2022-12-23T11:00:00.000+00:00')},
-        { id: 3, username: 'John', name: 'Study Meet', building: '10', room: '30', date: new Date('2022-12-23T11:00:00.000+00:00')},
-        { id: 4, username: 'Brandon T', name: 'Potluck', building: '11', room: '40', date: new Date('2022-12-23T11:00:00.000+00:00')},
-        { id: 5, username: 'Aamir', name: 'Book Club', building: '4', room: '6', date: new Date('2022-12-23T11:00:00.000+00:00')}
-    ]);
+    const [events, setEvents] = useState<event[]>([])
+
+    useEffect(() => {
+		// function is called after rendering map
+		getData();
+	}, []); // end useEffect
+
+    const getData = async () => {
+        try {
+            const { data } = await axios.get('api/events');
+            data.forEach((event: event) => {
+				// for loop inserts each event into array
+				setEvents((prevEvent) => [...prevEvent, event]); // add new event to end of array
+			});
+            console.log(events)
+        } catch (err) {
+            console.error(err);
+        }
+    }
 
     return (
         <div className="container">
@@ -19,16 +48,20 @@ export const EventList = () => {
                         <th>Event Name</th>
                         <th>Building</th>
                         <th>Room</th>
+                        <th>Start Time</th>
+                        <th>End Time</th>
                         <th>Date</th>
                     </tr>
                 </thead>
                 <tbody>
                     {events && events.map(event =>
-                        <tr key={event.id}>
+                        <tr key={Math.floor(Math.random() * 1000+1)}>
                             <td>{event.username}</td>
                             <td>{event.name}</td>
                             <td>{event.building}</td>
                             <td>{event.room}</td>
+                            <td>{event.startTime.toString()}</td>
+                            <td>{event.endTime.toString()}</td>
                             <td>{event.date.toString()}</td>
                         </tr>
                         )}
