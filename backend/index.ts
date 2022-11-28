@@ -7,28 +7,19 @@ import CPPEvent from './schema/CPPEvent';
 import { dbConnect } from './dbConnect';
 import eventRouter from './routes/eventRoutes';
 import userRoutes from './routes/userRoutes';
+import cors from 'cors';
 //import underscore from 'underscore';
 
 dotenv.config();
 
-dbConnect();
 const app: Express = express();
 const port = 8080;
 
-/*
-const mongoose: Mongoose = require('mongoose');
-mongoose.connect(`${process.env.MONGO_DB_CLUSTER}`, (err) => {
-	if (err) {
-		console.log(err);
-	}
-	console.log('Connected to database');
-});
-*/
+dbConnect();
 
+app.use(cors());
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-
-//
+app.use(express.urlencoded({ extended: true }));
 
 app.use('/api/events', eventRouter);
 app.use('/api/users', userRoutes);
