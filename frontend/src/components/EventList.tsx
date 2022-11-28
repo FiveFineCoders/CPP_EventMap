@@ -60,9 +60,9 @@ export const EventList = () => {
                             <td>{event.name}</td>
                             <td>{event.building}</td>
                             <td>{event.room}</td>
-                            <td>{event.startTime.toString()}</td>
-                            <td>{event.endTime.toString()}</td>
-                            <td>{event.date.toString()}</td>
+                            <td>{new Date(event.startTime).toLocaleTimeString()}</td>
+                            <td>{new Date(event.endTime).toLocaleTimeString()}</td>
+                            <td>{new Date(event.date).toLocaleDateString()}</td>
                         </tr>
                         )}
                 </tbody>
