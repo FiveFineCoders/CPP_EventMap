@@ -56,12 +56,12 @@ export const createEvent = async (req: Request, res: Response) => {
 
 	// attempt to create new event
 	const newEvent = await Event.create({
-		name: eventName,
-		startTime: eventStartTime,
-		endTime: eventEndTime,
-		room: eventRoom,
-		building: eventBuilding,
-		description: eventDescript,
+		eventName: eventName,
+		eventStartTime: eventStartTime,
+		eventEndTime: eventEndTime,
+		eventRoom: eventRoom,
+		eventBuilding: eventBuilding,
+		eventDescript: eventDescript,
 		username: username,
 		longitude: longitude,
 		latitude: latitude,
