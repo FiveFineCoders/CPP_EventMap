@@ -1,12 +1,12 @@
 import { Document } from 'mongoose';
 
 interface CPPEvent extends Document {
-	name: string;
-	startTime: Date;
-	endTime: Date;
-	room: string;
-	building: string;
-	description: string;
+	eventName: string;
+	eventStartTime: Date;
+	eventEndTime: Date;
+	eventRoom: string;
+	eventBuilding: string;
+	eventDescript: string;
 	date: Date;
 	username: string;
 	longitude: Number;

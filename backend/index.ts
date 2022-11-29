@@ -26,22 +26,6 @@ app.use('/api/users', userRoutes);
 
 // assignments
 
-app.get('/event', (req: Request, res: Response) => {
-	const input = {
-		name: req.query.name,
-		startTime: req.query.start,
-		endTime: req.query.end,
-		room: req.query.room,
-		building: req.query.building,
-		description: req.query.description,
-	};
-	const event: CPPEvent = new Event(input);
-	console.log('event', event);
-	event.save();
-	console.log('Successfully saved data');
-	res.send('Demo adding new data to database');
-});
-
 app.get('/api/assignment3/johnsalinas', (req: Request, res: Response) => {
 	res.send('HTTP API for John Salinas -> working');
 });
