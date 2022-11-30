@@ -6,6 +6,7 @@ import ReactMapGL, {
 	NavigationControl,
 	ScaleControl,
 	Marker,
+	Popup,
 } from 'react-map-gl';
 import MapSidebar from './MapSidebar';
 import PopupForm from './PopupForm';
@@ -49,6 +50,7 @@ export const CPPMap = (): JSX.Element => {
 	const [longitude, setLongitude] = useState(0);
 	const [latitude, setLatitude] = useState(0);
 	const [eventMarkerList, setEventMarkerList] = useState<eventMarker[]>([]); // initialize empty array
+	const [popupInfo, setPopupInfo] = useState<eventMarker | null>(null);
 
 	const [viewState, setViewState] = React.useState({
 		longitude: -117.82261244351792,
@@ -84,6 +86,10 @@ export const CPPMap = (): JSX.Element => {
 			}
 		} // end catch
 	}; // end getMarkers const
+
+	const onClose = () => {
+		setPopupInfo(null)
+	};
 
 	// Starting cords
 	//34.027805, -117.845633
@@ -125,6 +131,19 @@ export const CPPMap = (): JSX.Element => {
 							longitude={event.longitude}
 							latitude={event.latitude}
 							color={'#1fe81c'}
+							onClick={(e) => {
+								/*console.log(event.longitude)
+								console.log(event.latitude)
+								console.log(event.eventName);
+								console.log(event.eventStartTime);
+								console.log(event.eventEndTime);
+								console.log(event.eventRoom);
+								console.log(event.eventBuilding);
+								console.log(event.eventDescript);
+								console.log(event.username);*/
+								e.originalEvent.stopPropagation();
+								setPopupInfo(event)
+							}}
 						/>
 					),
 				)}
@@ -133,6 +152,25 @@ export const CPPMap = (): JSX.Element => {
 				<GeolocateControl position='top-right' />
 				<NavigationControl position='top-right' />
 				<ScaleControl />
+
+				{popupInfo && (
+					<Popup
+						longitude={Number(popupInfo.longitude)}
+						latitude={Number(popupInfo.latitude)}
+						anchor="top"
+						onClose={() => setPopupInfo(null)}
+					>
+						<div>
+							<p>{popupInfo.eventName}</p>
+							<p>{String(popupInfo.eventStartTime)}</p>
+							<p>{String(popupInfo.eventEndTime)}</p>
+							<p>{popupInfo.eventRoom}</p>
+							<p>{popupInfo.eventBuilding}</p>
+							<p>{popupInfo.eventDescript}</p>
+						</div>
+					</Popup>
+
+				)}
 
 				<div id='eventPopup'>
 					<PopupForm
