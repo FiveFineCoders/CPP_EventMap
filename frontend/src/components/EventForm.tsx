@@ -4,7 +4,7 @@ import '../styles/sidebar.css';
 import { createEvent } from '../../../backend/controllers/createEventControl';
 import axios from 'axios';
 
-axios.defaults.baseURL = 'http://localhost:8080';
+axios.defaults.baseURL = 'http://ec2-3-101-155-89.us-west-1.compute.amazonaws.com:8080';
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 type eventAcceptedResponse = {
