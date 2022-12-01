@@ -39,17 +39,28 @@ body {
 }
 
 #addEventIcon {
-    position: fixed;
-    left: 50%;
-    bottom: 10px;
-    transform: translate(-50%, -50%);
-    margin: 0 auto;
+	position: fixed;
+	left: 50%;
+	bottom: 10px;
+	transform: translate(-50%, -50%);
+	margin: 0 auto;
 }
 
 #eventPopup {
-    position: fixed;
-    left: 50%;
-    bottom: 300px;
-    transform: translate(-50%, -50%);
-    margin: 0 auto;
+	position: fixed;
+	left: 50%;
+	bottom: 300px;
+	transform: translate(-50%, -50%);
+	margin: 0 auto;
+}
+
+li {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+ul {
+	margin: 0;
+	padding: 0;
 }

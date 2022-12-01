@@ -28,3 +28,13 @@
 	transition-duration: 300ms;
 	color: #47b115;
 }
+
+.event-popup-p {
+	margin: 0;
+	padding: 0;
+}
+
+.event-popup {
+	margin: -15px;
+	border: 5px solid #47b115;
+}

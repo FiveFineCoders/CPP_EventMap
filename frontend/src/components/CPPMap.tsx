@@ -12,6 +12,7 @@ import MapSidebar from './MapSidebar';
 import PopupForm from './PopupForm';
 import { AiFillPlusCircle } from 'react-icons/ai';
 import '../styles/cppmap.css';
+import '../styles/general.css';
 import axios from 'axios';
 
 // @ts-ignore
@@ -88,7 +89,7 @@ export const CPPMap = (): JSX.Element => {
 	}; // end getMarkers const
 
 	const onClose = () => {
-		setPopupInfo(null)
+		setPopupInfo(null);
 	};
 
 	// Starting cords
@@ -142,7 +143,7 @@ export const CPPMap = (): JSX.Element => {
 								console.log(event.eventDescript);
 								console.log(event.username);*/
 								e.originalEvent.stopPropagation();
-								setPopupInfo(event)
+								setPopupInfo(event);
 							}}
 						/>
 					),
@@ -157,19 +158,22 @@ export const CPPMap = (): JSX.Element => {
 					<Popup
 						longitude={Number(popupInfo.longitude)}
 						latitude={Number(popupInfo.latitude)}
-						anchor="top"
+						anchor='top'
 						onClose={() => setPopupInfo(null)}
 					>
-						<div>
-							<p>{popupInfo.eventName}</p>
-							<p>{String(popupInfo.eventStartTime)}</p>
-							<p>{String(popupInfo.eventEndTime)}</p>
-							<p>{popupInfo.eventRoom}</p>
-							<p>{popupInfo.eventBuilding}</p>
-							<p>{popupInfo.eventDescript}</p>
+						<div className='event-popup'>
+							<p className='event-popup-p'>{'Event Name:  ' + popupInfo.eventName}</p>
+							<p className='event-popup-p'>
+								{'Start Time: ' + String(new Date(popupInfo.eventStartTime).toLocaleTimeString())}
+							</p>
+							<p className='event-popup-p'>
+								{'End Time:  ' + String(new Date(popupInfo.eventEndTime).toLocaleTimeString())}
+							</p>
+							<p className='event-popup-p'>{'Building:  ' + popupInfo.eventBuilding}</p>
+							<p className='event-popup-p'>{'Room:  ' + popupInfo.eventRoom}</p>
+							<p className='event-popup-p'>{'Description: ' + popupInfo.eventDescript}</p>
 						</div>
 					</Popup>
-
 				)}
 
 				<div id='eventPopup'>
