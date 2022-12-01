@@ -15,7 +15,6 @@ export const Login = (): JSX.Element => {
 	const [username, setUserName] = useState('');
 	const [password, setPassword] = useState('');
 	const [confirm, setConfirm] = useState('');
-	const [currentUser, setCurrentUser] = useState('');
 
 	// alert message
 	const [alert, setAlert] = useState('');

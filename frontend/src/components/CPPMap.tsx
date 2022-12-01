@@ -55,7 +55,7 @@ export const CPPMap = (): JSX.Element => {
 	const [popupInfo, setPopupInfo] = useState<eventMarker | null>(null);
 
 	const { state } = useLocation();
-	const {id, username } = state;
+	const { username } = state || {};
 
 	const [viewState, setViewState] = React.useState({
 		longitude: -117.82261244351792,
