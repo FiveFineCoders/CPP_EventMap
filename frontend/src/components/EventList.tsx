@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { isShorthandPropertyAssignment } from 'typescript';
-import shortid from 'shortid';
 
 type event = {
+	_id: number;
 	eventName: String;
 	eventStartTime: Date;
 	eventEndTime: Date;
@@ -56,7 +55,7 @@ export const EventList = () => {
 				<tbody>
 					{events &&
 						events.map((event) => (
-							<tr key={Math.floor(Math.random() * 1000 + 1)}>
+							<tr key={event._id}>
 								<td>{new Date(event.date).toLocaleDateString()}</td>
 								<td>{event.username}</td>
 								<td>{event.eventName}</td>
