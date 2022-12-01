@@ -15,6 +15,7 @@ export const Login = (): JSX.Element => {
 	const [username, setUserName] = useState('');
 	const [password, setPassword] = useState('');
 	const [confirm, setConfirm] = useState('');
+	const [currentUser, setCurrentUser] = useState('');
 
 	// alert message
 	const [alert, setAlert] = useState('');
@@ -55,7 +56,7 @@ export const Login = (): JSX.Element => {
 				password: password,
 			});
 
-			navigate('/home', {
+			navigate('/', {
 				replace: false,
 				state: {
 					id: data.id,
@@ -81,7 +82,7 @@ export const Login = (): JSX.Element => {
 				password: password,
 			});
 
-			navigate('/home', {
+			navigate('/', {
 				replace: false,
 				state: {
 					id: data.id,
@@ -145,13 +146,13 @@ export const Login = (): JSX.Element => {
 				)}
 
 				<div className='mb-4 d-grid gap-2'>
-					<Button variant='secondary' size='sm'>
+					<Button variant='secondary' size='sm' onClick={handleLogin}>
 						{loginMode ? 'Login' : 'Sign Up'}
 					</Button>
 				</div>
 
 				<div className=' d-flex justify-content-center' onClick={toggleMode}>
-					<p className='login-mode-switch' onClick={handleLogin}>
+					<p className='login-mode-switch'>
 						{loginMode ? 'Create an account?' : 'Already have an account?'}
 					</p>
 				</div>

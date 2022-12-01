@@ -14,6 +14,7 @@ import { AiFillPlusCircle } from 'react-icons/ai';
 import '../styles/cppmap.css';
 import '../styles/general.css';
 import axios from 'axios';
+import { useLocation } from 'react-router-dom';
 
 // @ts-ignore
 // eslint-disable-next-line import/no-webpack-loader-syntax
@@ -52,6 +53,9 @@ export const CPPMap = (): JSX.Element => {
 	const [latitude, setLatitude] = useState(0);
 	const [eventMarkerList, setEventMarkerList] = useState<eventMarker[]>([]); // initialize empty array
 	const [popupInfo, setPopupInfo] = useState<eventMarker | null>(null);
+
+	const { state } = useLocation();
+	const {id, username } = state;
 
 	const [viewState, setViewState] = React.useState({
 		longitude: -117.82261244351792,
@@ -183,6 +187,7 @@ export const CPPMap = (): JSX.Element => {
 						isEventFormActive={setActivateEventForm}
 						longitudeVal={longitude}
 						latitudeVal={latitude}
+						username={username}
 						setEventList={setEventMarkerList}
 					/>
 				</div>

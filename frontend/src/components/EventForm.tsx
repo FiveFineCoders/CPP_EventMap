@@ -20,9 +20,14 @@ type eventAcceptedResponse = {
 	id: number;
 };
 
-const username = 'John';
-
-const EventForm = ({ longitude, latitude, setEventMarkerList, setEventCreate, setActivateEventForm }) => {
+const EventForm = ({
+	longitude,
+	latitude,
+	username,
+	setEventMarkerList,
+	setEventCreate,
+	setActivateEventForm,
+}) => {
 	const [eventName, setEventName] = useState('');
 	const [eventStartTime, setEventStartTime] = useState(new Date());
 	const [eventEndTime, setEventEndTime] = useState(new Date());
@@ -71,17 +76,20 @@ const EventForm = ({ longitude, latitude, setEventMarkerList, setEventCreate, se
 
 		postRequest(); // send post request containing event data
 
-		setEventMarkerList(prevMarker => [...prevMarker, { 
-			eventName: eventName,
-			eventStartTime: eventStartTime,
-			eventEndTime: eventEndTime,
-			eventRoom: eventRoom,
-			eventBuilding: eventBuilding,
-			eventDescript: eventDescription,
-			username: username,
-			longitude: longitude,
-			latitude: latitude }
-		]);	// add marker to map such that user doesn't need to refresh to see it
+		setEventMarkerList((prevMarker) => [
+			...prevMarker,
+			{
+				eventName: eventName,
+				eventStartTime: eventStartTime,
+				eventEndTime: eventEndTime,
+				eventRoom: eventRoom,
+				eventBuilding: eventBuilding,
+				eventDescript: eventDescription,
+				username: username,
+				longitude: longitude,
+				latitude: latitude,
+			},
+		]); // add marker to map such that user doesn't need to refresh to see it
 
 		console.log('Submitted');
 
